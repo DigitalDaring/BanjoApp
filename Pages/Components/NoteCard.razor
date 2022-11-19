@@ -1,0 +1,19 @@
+@namespace banjo_app.Components
+
+<section class="NoteCard">
+    <span class="Note" isSharp="@IsSharp">
+        @Note
+    </span>
+    <span>On String @StringNumber</span>
+</section>
+
+@code {
+    [Parameter]
+    public string Note {get; set;}
+    
+    [Parameter]
+    public bool IsSharp {get; set;}
+
+    [Parameter]
+    public int StringNumber {get; set;}
+}

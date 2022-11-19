@@ -1,0 +1,41 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, Banjo!</h1>
+
+<NoteCard Note="@CurrentNote.Note" IsSharp="@CurrentNote.IsSharp" StringNumber="@RandomString"/>
+
+<button class="SexyButton" @onclick="GetNextNote">Next Note!</button>
+
+@code {
+    public Random Rnd = new Random();
+
+    public NoteCardModel[] PossibleNotes = {
+        new NoteCardModel("A"),
+        new NoteCardModel("A", true),
+        new NoteCardModel("B"),
+        new NoteCardModel("C"),
+        new NoteCardModel("C", true),
+        new NoteCardModel("D"),
+        new NoteCardModel("D", true),
+        new NoteCardModel("E"),
+        new NoteCardModel("F"),
+        new NoteCardModel("F", true),
+        new NoteCardModel("G"),
+        new NoteCardModel("G", true)
+    };
+
+    public NoteCardModel CurrentNote = new NoteCardModel("C", true);
+    public int RandomString = 0;
+
+    protected override void OnInitialized()
+    {
+        GetNextNote();
+    }
+
+    private void GetNextNote() {
+        CurrentNote = PossibleNotes[Rnd.Next(0, PossibleNotes.Count())];
+        RandomString = Rnd.Next(1, 5);
+    }
+}
